@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual keyboard</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="text_area__wrapper">
+            <textarea name="text_area" id="example" cols="50" rows="2" readonly></textarea>
+            <div class="help_wrapper">
+                <h3>Windows keyboard</h3>
+                <h5>Change language: </h5>
+                <h5> Win + Space</h5>
+                <h2 class="lanquagq_indicator">EN</h2>
+            </div>
+        </div>
+        <div class="keys__container">
+            <div id="rowE" class="row">
+                <div class="key" id="Backquote" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">~</h5>
+                </div>
+                <div class="key" id="Digit1" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">1</h5>
+                </div>
+                <div class="key" id="Digit2" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">2</h5>
+                </div>
+                <div class="key" id="Digit3" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">3</h5>
+                </div>
+                <div class="key" id="Digit4" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">4</h5>
+                </div>
+                <div class="key" id="Digit5" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">5</h5>
+                </div>
+                <div class="key" id="Digit6" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">6</h5>
+                </div>
+                <div class="key" id="Digit7" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">7</h5>
+                </div>
+                <div class="key" id="Digit8" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">8</h5>
+                </div>
+                <div class="key" id="Digit9" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">9</h5>
+                </div>
+                <div class="key" id="Digit0" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">0</h5>
+                </div>
+                <div class="key" id="Minus" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">-</h5>
+                </div>
+                <div class="key" id="Equal" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">=</h5>
+                </div>
+                <div class="key" id="Backspace" style="width: 130px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Backspace</h5>
+                </div>
+            </div>
+            <div id="rowD" class="row">
+                <div class="key" id="Tab" style="width: 90px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Tab</h5>
+                </div>
+                <div class="key" id="KeyQ" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Q</h5>
+                </div>
+                <div class="key" id="KeyW" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">W</h5>
+                </div>
+                <div class="key" id="KeyE" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">E</h5>
+                </div>
+                <div class="key" id="KeyR" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">R</h5>
+                </div>
+                <div class="key" id="KeyT" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">T</h5>
+                </div>
+                <div class="key" id="KeyY" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Y</h5>
+                </div>
+                <div class="key" id="KeyU" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">U</h5>
+                </div>
+                <div class="key" id="KeyI" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">I</h5>
+                </div>
+                <div class="key" id="KeyO" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">O</h5>
+                </div>
+                <div class="key" id="KeyP" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">P</h5>
+                </div>
+                <div class="key" id="BracketLeft" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">{</h5>
+                </div>
+                <div class="key" id="BracketRight" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">}</h5>
+                </div>
+                <div class="key" id="Backslash" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">\</h5>
+                </div>
+                <div class="key" id="Delete" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Del</h5>
+                </div>
+            </div>
+            <div id="rowC" class="row">
+                <div class="key" id="CapsLock" style="width: 160px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Caps Lock</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">A</h5>
+                </div>
+                <div class="key" id="KeyS" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">S</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">D</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">F</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">G</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">H</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">J</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">K</h5>
+                </div>
+                <div class="key" id="KeyA" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">L</h5>
+                </div>
+                <div class="key" id="Semicolon" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">:</h5>
+                </div>
+                <div class="key" id="Quote" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">"</h5>
+                </div>
+                <div class="key" id="Enter" style="width: 130px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">ENTER</h5>
+                </div>
+            </div>
+            <div id="rowB" class="row">
+                <div class="key" id="ShiftLeft" style="width: 130px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Shift</h5>
+                </div>
+                <div class="key" id="Backslash" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">\</h5>
+                </div>
+                <div class="key" id="KeyZ" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Z</h5>
+                </div>
+                <div class="key" id="KeyX" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">X</h5>
+                </div>
+                <div class="key" id="KeyC" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">C</h5>
+                </div>
+                <div class="key" id="KeyV" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">V</h5>
+                </div>
+                <div class="key" id="KeyB" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">B</h5>
+                </div>
+                <div class="key" id="KeyN" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">N</h5>
+                </div>
+                <div class="key" id="KeyM" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">M</h5>
+                </div>
+                <div class="key" id="Period" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">.</h5>
+                </div>
+                <div class="key" id="NumpadDecimal" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">,</h5>
+                </div>
+                <div class="key" id="Slash" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">/</h5>
+                </div>
+                <div class="key" id="ArrowUp" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">^</h5>
+                </div>
+                <div class="key" id="ShiftLeft" style="width: 130px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Shift</h5>
+                </div>
+            </div>
+            <div id="rowA" class="row">
+                <div class="key" id="ControlLeft" style="width: 90px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Ctrl</h5>
+                </div>
+                <div class="key" id="Meta" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Win</h5>
+                </div>
+                <div class="key" id="Alt" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Alt</h5>
+                </div>
+                <div class="key" id="Space" style="width: 600px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign"></h5>
+                </div>
+                <div class="key" id="Alt" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Alt</h5>
+                </div>
+                <div class="key" id="ControlLeft" style="width: 90px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">Ctrl</h5>
+                </div>
+                <div class="key" id="ArrowLeft" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">&lt;-</h5>
+                </div>
+                <div class="key" id="ArrowDown" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">|</h5>
+                </div>
+                <div class="key" id="ArrowRight" style="width: 60px;">
+                    <h4 class="down__sign"></h4>
+                    <h5 class="up__sign">-&gt;</h5>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- <script src="./script.js"></script> -->
+</body>
+
+</html>
