@@ -1,2 +1,6 @@
-node_modules
-prepos*.*
+/node_modules
+prepros.*
+.gitignore
+/src/*.txt
+/src/index1.*
+*.log
