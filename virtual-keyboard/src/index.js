@@ -1,31 +1,46 @@
-// import { keysArray } from "./keys.js";
 import { createHtmlDoc } from "./fillTemplate.js";
 import {
   keysArray,
   keysArrayEN,
   fixedKeys,
   keysArrayRU,
-  settings,
   specialKeysActions,
 } from "./keys.js";
-// import './css/style.css';
-// const leyboardWidth = 1200;
-// const leyboardHight = 400;
 
-// let localStorage = window.localStorage;
-settings.lang= window.localStorage.getItem('lang');
-settings.muteKeyboard= window.localStorage.getItem('mute');
-const audio = new Audio("./assets/sounds/click.wav");
-// let muteKeyboard = true;
+const settings = {
+  lang: "en",
+  sound: "off",
+};
 
 const lightOn = true;
 const lightOff = false;
 
 createHtmlDoc();
 
+if (window.localStorage.getItem("lang") != undefined) {
+  settings.lang = window.localStorage.getItem("lang");
+} else {
+  settings.lang = "en";
+}
+
+if (window.localStorage.getItem("mute") != undefined) {
+  settings.sound = window.localStorage.getItem("sound");
+} else {
+  settings.sound = "off";
+}
+
+const audio = new Audio("./assets/sounds/click.wav");
+
+const mute_button = document.querySelector(".mute_button");
+
+mute_button.addEventListener("click", () => {
+  settings.sound = settings.sound === "on" ? "off" : "on";
+  setSound();
+  window.localStorage.setItem("sound", settings.sound);
+});
+
 const keysAll = document.querySelectorAll(".key");
 for (const element of keysAll) {
-  // element.addEventListener("click", keyMouseDown);
   element.addEventListener("mousedown", keyMouseDown);
   element.addEventListener("mouseup", keyMouseUp);
 }
@@ -35,8 +50,9 @@ const textArea = document.querySelector(".text_area");
 document.querySelector(".clear_button").addEventListener("click", () => {
   textArea.textContent = "";
 });
+switchLanguage(settings.lang);
+setSound();
 
-// !! **************************** keypress listener
 document.addEventListener("keydown", (ev) => {
   // console.log('type=' + ev.type);
   // console.log(' key=' + ev.key);
@@ -46,28 +62,42 @@ document.addEventListener("keydown", (ev) => {
   //     (e.altKey ? ' altKey' : '') +
   //     (e.metaKey ? ' metaKey' : '') +
   //     (e.repeat ? ' (repeat)' : '');
-  keyboardPress(ev);
-  playClick();
+  keyboardDown(ev);
+  //   playClick();
 });
 
-// !! ****************************  keyboardPress
-function keyboardPress(ev) {
-  // console.log(ev);
-  // console.log(ev.currentTarget);
-  // console.log(ev.target);
+document.addEventListener("keyup", (ev) => {
+  keyboardUp(ev);
+});
 
-  if (fixedKeys.hasOwnProperty(ev.code)) {
-    // console.log(ev.currentTarget);
-    document.getElementById(ev.code).classList.toggle("key_pressed");
+// !! **************************** setSound
+function setSound() {
+  if (settings.sound == "off") {
+    mute_button.classList.add("mute");
+  } else {
+    mute_button.classList.remove("mute");
   }
-//   let mouseDownEvent = new Event("mousedown");
-//   let mouseUpEvent = new Event("mouseup");
-//   document.getElementById(ev.code).dispatchEvent(mouseDownEvent);
-//   document.getElementById(ev.code).dispatchEvent(mouseUpEvent);
-  playClick();
-  printLetter(ev);
-//   ev.preventDefault();
 }
+
+// !! ****************************  keyboardDown
+function keyboardDown(ev) {
+  console.log(" key=" + ev.key);
+  console.log(" code=" + ev.code);
+
+  onPressDown(document.getElementById(ev.code), ev.code);
+
+  // if (fixedKeys.hasOwnProperty(ev.code)) {
+  //     document.getElementById(ev.code).classList.toggle("key_pressed");
+  // }
+  // playClick();
+  // printLetter(ev);
+}
+
+// !! ****************************  keyboardDown
+function keyboardUp(ev) {
+  onPressUp(document.getElementById(ev.code), ev.code);
+}
+
 // !! ****************************  illuminateKey
 function illuminateKey(pressedVirtKey, on = false) {
   if (on) {
@@ -86,45 +116,61 @@ function illuminateKey(pressedVirtKey, on = false) {
 function keyMouseDown(e) {
   let virtKey = e.currentTarget;
   let id = virtKey.id;
-  if (fixedKeys.hasOwnProperty(id)) {
-    fixedKeys[id] = !fixedKeys[id];
-    document.getElementById(id).classList.toggle("key_pressed");
-  } else {
-    illuminateKey(virtKey, lightOn);
-    if (!specialKeysActions.includes(id) 
-        && !(fixedKeys.Meta || fixedKeys.AltLeft || fixedKeys.AltRight|| fixedKeys.ControlLeft|| fixedKeys.ControlRight)){
-        printLetter(e);
-    }
-  }
-
-  playClick();
+  onPressDown(virtKey, id);
 }
 
 // !! ****************************  keyMouseUp
 function keyMouseUp(e) {
   let id = e.currentTarget.id;
   let virtKey = e.currentTarget;
+  onPressUp(virtKey, id);
+}
+
+// !! ****************************  onPressDown
+function onPressDown(virtKey, id) {
+  if (fixedKeys.hasOwnProperty(id)) {
+    fixedKeys[id] = !fixedKeys[id];
+    document.getElementById(id).classList.toggle("key_pressed");
+  } else {
+    illuminateKey(virtKey, lightOn);
+    if (
+      !specialKeysActions.includes(id) &&
+      !(
+        fixedKeys.Meta ||
+        fixedKeys.AltLeft ||
+        fixedKeys.AltRight ||
+        fixedKeys.ControlLeft ||
+        fixedKeys.ControlRight
+      )
+    ) {
+      printLetter(id);
+    }
+  }
+  playClick();
+}
+
+function onPressUp(virtKey, id) {
   if (!fixedKeys.hasOwnProperty(id)) {
     illuminateKey(virtKey, lightOff).then(handleKeys(virtKey));
   }
 }
-
 // !! ****************************  handleKeys
 function handleKeys(pressedVirtKey) {
   let id = pressedVirtKey.id;
   if (fixedKeys.Meta && pressedVirtKey.id == "Space") {
     switchLanguage();
     resetKeys();
-    return
+    return;
   }
   if (specialKeysActions.includes(id)) {
-    textArea.focus();
+    // textArea.focus();
     switch (id) {
       case "Delete":
-        textArea.dispatchEvent(new Event(""));
+        console.log(id);
+        // textArea.dispatchEvent(new KeyboardEvent("keydown", { 'keyCode': 9, 'wich': 9 }));
         break;
       case "Enter":
-        console.log(textArea);
+        // console.log(textArea);
         break;
       case "Tab":
         break;
@@ -155,9 +201,12 @@ function resetKeys() {
 }
 
 // !! ****************************  switchLanguage
-function switchLanguage() {
-  settings.lang = settings.lang == "ru" ? "en" : "ru";
-  window.localStorage.setItem('lang', settings.lang)
+function switchLanguage(lang) {
+  if (lang) {
+  } else {
+    settings.lang = settings.lang == "ru" ? "en" : "ru";
+  }
+  window.localStorage.setItem("lang", settings.lang);
   let arr = settings.lang == "en" ? keysArrayEN : keysArrayRU;
 
   document.querySelector(".language_indicator").textContent =
@@ -167,45 +216,42 @@ function switchLanguage() {
     arr[key].forEach((arrEl) => {
       document.getElementById(arrEl[0]).children[1].textContent = arrEl[1];
       keysArray[key].forEach((arrKeysArr) => {
-          if (arrKeysArr.includes(arrEl[0])) {
-              arrKeysArr[1] = arrEl[1];
-          }
-      }); 
-    //   keysArray[key][1] = element[1];
+        if (arrKeysArr.includes(arrEl[0])) {
+          arrKeysArr[1] = arrEl[1];
+        }
+      });
+      //   keysArray[key][1] = element[1];
     });
   }
-
 }
 
 // !! ****************************  printLetter
-function printLetter(ev) {
-  if (ev.type == "mousedown") {
-    textArea.textContent += getLetter(ev.currentTarget.id);
-  } else if (ev.type == "keypress") {
-    textArea.textContent += ev.key;
-  }
+function printLetter(id) {
+  textArea.textContent += getLetter(id);
 }
 
 // !! ****************************  getLetter
 function getLetter(id) {
-
-  console.log(id);
+  // console.log(id);
   let shift = fixedKeys.ShiftLeft || fixedKeys.ShiftRight;
   let alt = fixedKeys.AltLeft || fixedKeys.AltRight;
 
   for (let row in keysArray) {
     for (let j = 0; j < keysArray[row].length; j++) {
-        let rowKeysArr = keysArray[row][j];
+      let rowKeysArr = keysArray[row][j];
       if (rowKeysArr.includes(id)) {
         if (fixedKeys.CapsLock) {
-          return shift ? rowKeysArr[1].toLowerCase() : rowKeysArr[1].toUpperCase();
+          return shift
+            ? rowKeysArr[1].toLowerCase()
+            : rowKeysArr[1].toUpperCase();
         } else {
-            if (row === 'rowE') {
-                return shift ? rowKeysArr[3]: rowKeysArr[1].toUpperCase();
-            }
-            else{
-                return shift ? rowKeysArr[1].toUpperCase() : rowKeysArr[1].toLowerCase();
-            }
+          if (row === "rowE") {
+            return shift ? rowKeysArr[3] : rowKeysArr[1].toUpperCase();
+          } else {
+            return shift
+              ? rowKeysArr[1].toUpperCase()
+              : rowKeysArr[1].toLowerCase();
+          }
         }
       }
     }
@@ -214,7 +260,7 @@ function getLetter(id) {
 
 // !! ****************************  playClick
 function playClick() {
-  if (!settings.muteKeyboard) {
+  if (settings.sound == "on") {
     audio.play();
   }
 }

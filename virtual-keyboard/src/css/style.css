@@ -31,7 +31,6 @@ h5 {
   margin: 100px auto;
   border: 3px solid #222020;
   background-color: beige;
-  border: 3px solid #222020;
   border-radius: 10px;
 }
 
@@ -41,7 +40,6 @@ h5 {
   padding: 10px;
   border: 3px solid #222020;
   background-color: beige;
-  border: 3px solid #222020;
   border-radius: 10px;
   margin: 10px auto 5px;
   display: -webkit-box;
@@ -53,17 +51,35 @@ h5 {
 }
 
 .text_area {
-  font-size: 36px;
-  display: block;
   width: 100%;
+  display: block;
+  resize: none;
+  font-size: 36px;
 }
 
-.clear_button {
+.control {
   height: 30px;
   width: 30px;
   margin-right: 5px;
   margin-left: 5px;
   cursor: pointer;
+  border-radius: 10px;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.control:hover {
+  border-color: #3498a1;
+  background-color: #bbdbf0;
+}
+
+.mute_button {
+  background-image: url(../assets/ico/volume-up-4-16.ico);
+  background-size: contain;
+  background-position: center;
+}
+
+.mute {
+  background-image: url(../assets/ico/mute.ico);
 }
 
 .help_wrapper {
@@ -125,7 +141,7 @@ h5 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 5vh;
+  height: 6vh;
   gap: 10px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -153,13 +169,24 @@ h5 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 .key_pressed {
   border-color: #3498db;
   -webkit-box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
           box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
-  -webkit-transition: all 150ms ease-in-out;
-  transition: all 150ms ease-in-out;
+}
+.key:hover {
+  border-color: #3498a1;
+  color: #bbdbf0;
+}
+
+#meta {
+  background-image: url(../assets/ico/115681_windows_icon.svg);
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .down__sign {

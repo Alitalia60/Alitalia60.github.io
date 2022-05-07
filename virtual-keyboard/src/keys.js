@@ -1,8 +1,3 @@
-export const settings = {
-    lang: 'en',
-    muteKeyboard: true,
-};
-
 export const keysArray = {
     rowE: [
         ["Backquote", "~", 60, "`"],
@@ -47,7 +42,7 @@ export const keysArray = {
         ["KeyH", "H", 60],
         ["KeyJ", "J", 60],
         ["KeyK", "K", 60],
-        ["KeyL;", "L", 60],
+        ["KeyL", "L", 60],
         ["Semicolon", ":", 60],
         ["Quote", '"', 60],
         ["Enter", "ENTER", 130]
@@ -63,14 +58,14 @@ export const keysArray = {
         ["KeyN", "N", 60],
         ["KeyM", "M", 60],
         ["Period", ".", 60],
-        ["NumpadDecimal", ",", 60],
+        ["Comma", ",", 60],
         ["Slash", "/", 60],
         ["ArrowUp", "⯅", 60],
         ["ShiftRight", "Shift", 60]
     ],
     rowA: [
         ["ControlLeft", "Ctrl", 90],
-        ["Meta", "Win", 60],
+        ["Meta", "", 60],
         ["AltLeft", "Alt", 60],
         ["Space", " ", 470],
         ["AltRight", "Alt", 60],
@@ -134,7 +129,7 @@ export const keysArrayEN = {
         ["KeyH", "H"],
         ["KeyJ", "J"],
         ["KeyK", "K"],
-        ["KeyL;", "L"],
+        ["KeyL", "L"],
         ["Semicolon", ":"],
         ["Quote", '"']
     ],
@@ -147,7 +142,7 @@ export const keysArrayEN = {
         ["KeyN", "N"],
         ["KeyM", "M"],
         ["Period", "."],
-        ["NumpadDecimal", ","],
+        ["Comma", ","],
         ["Slash", "/"]
     ],
 };
@@ -180,7 +175,7 @@ export const keysArrayRU = {
         ["KeyH", "Р"],
         ["KeyJ", "О"],
         ["KeyK", "Л"],
-        ["KeyL;", "Д"],
+        ["KeyL", "Д"],
         ["Semicolon", "Ж"],
         ["Quote", 'Э']
     ],
@@ -193,7 +188,7 @@ export const keysArrayRU = {
         ["KeyN", "Т"],
         ["KeyM", "Ь"],
         ["Period", "Б"],
-        ["NumpadDecimal", "Ю"],
+        ["Comma", "Ю"],
         ["Slash", "."]
     ],
 };

@@ -1,4 +1,11 @@
 @import './fonts.scss';
+@mixin transition-options {
+    transition: all 300ms ease-in-out;
+}
+$color-background: beige;
+$color-light-on: #3498db;
+$color-button-border: #3498a1;
+
 html {
     font-family: "Roboto";
 }
@@ -19,8 +26,7 @@ h5 {
     width: 1250px;
     margin: 100px auto;
     border: 3px solid #222020;
-    background-color: beige;
-    border: 3px solid #222020;
+    background-color: $color-background;
     border-radius: 10px;
 }
 
@@ -29,33 +35,46 @@ h5 {
     height: 10%;
     padding: 10px;
     border: 3px solid #222020;
-    background-color: beige;
-    border: 3px solid #222020;
+    background-color:$color-background;
     border-radius: 10px;
     margin: 10px auto 5px;
     display: flex;
     justify-content: space-between;
-    // gap: 30px;
 }
 
 .text_area {
-    font-size: 36px;
-    display: block;
     width: 100%;
+    display: block;
+    resize: none;
+    font-size: 36px;
 }
 
-.clear_button {
+.control {
     height: 30px;
     width: 30px;
     margin-right: 5px;
     margin-left: 5px;
     cursor: pointer;
+    border-radius: 10px;
+    @include transition-options;
+    &:hover {
+        border-color: $color-button-border;
+        background-color: #bbdbf0;
+    }
+}
+
+.mute_button {
+    background-image: url(../assets/ico/volume-up-4-16.ico);
+    background-size: contain;
+    background-position: center;
+}
+
+.mute {
+    background-image: url(../assets/ico/mute.ico);
 }
 
 .help_wrapper {
     width: 30%;
-    // border: 3px solid #222020;
-    // padding: 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -73,20 +92,18 @@ h5 {
 
 .keys__container {
     width: 1200px;
-    // width: fit-content;
     height: fit-content;
     margin: auto;
     padding: 10px;
     border: 3px solid #222020;
     border-radius: 10px;
-    background-color: beige;
+    background-color: $color-background;
 }
 
 .row {
     width: 100%;
     display: flex;
-    height: 5vh;
-    // grid-template-columns: auto;
+    height: 6vh;
     gap: 10px;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -98,19 +115,26 @@ h5 {
     flex-grow: 1;
     border: 3px solid black;
     border-radius: 10px;
-    // text-align: center;
     background-color: gray;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all 300ms ease-in-out;
     &_pressed {
-        border-color: #3498db;
-        // color: #fff;
-        box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
-        transition: all 150ms ease-in-out;
+        border-color: $color-light-on;
+        box-shadow: 0 0 40px 40px $color-light-on inset, 0 0 0 0 $color-light-on;
     }
-    
+    &:hover {
+        border-color: $color-button-border;
+        color: #bbdbf0;
+    }
+}
+#meta{
+    background-image: url(../assets/ico/115681_windows_icon.svg);
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .down__sign {
@@ -126,5 +150,5 @@ h5 {
 }
 
 .light-on {
-    background-color: #3498db;
+    background-color: $color-light-on;
 }
