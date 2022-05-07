@@ -2,10 +2,10 @@
 @mixin transition-options {
     transition: all 300ms ease-in-out;
 }
+
 $color-background: beige;
 $color-light-on: #3498db;
 $color-button-border: #3498a1;
-
 html {
     font-family: "Roboto";
 }
@@ -35,7 +35,7 @@ h5 {
     height: 10%;
     padding: 10px;
     border: 3px solid #222020;
-    background-color:$color-background;
+    background-color: $color-background;
     border-radius: 10px;
     margin: 10px auto 5px;
     display: flex;
@@ -130,7 +130,8 @@ h5 {
         color: #bbdbf0;
     }
 }
-#meta{
+
+#Meta {
     background-image: url(../assets/ico/115681_windows_icon.svg);
     background-size: 40px;
     background-repeat: no-repeat;

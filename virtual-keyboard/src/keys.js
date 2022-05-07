@@ -29,7 +29,7 @@ export const keysArray = {
         ["KeyP", "P", 60],
         ["BracketLeft", "{", 60],
         ["BracketRight", "}", 60],
-        ["Backslash", "\\", 60],
+        ["Backslash", "|", 60],
         ["Delete", "Del", 60]
     ],
     rowC: [
@@ -118,7 +118,7 @@ export const keysArrayEN = {
         ["KeyP", "P"],
         ["BracketLeft", "{"],
         ["BracketRight", "}"],
-        ["Backslash", "\\"]
+        ["Backslash", "|"]
     ],
     rowC: [
         ["KeyA", "A"],
