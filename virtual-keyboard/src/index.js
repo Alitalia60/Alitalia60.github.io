@@ -7,6 +7,8 @@ import {
     specialKeysActions,
 } from "./keys.js";
 
+import './css/style.css'
+
 const settings = {
     lang: "en",
     sound: "off",
