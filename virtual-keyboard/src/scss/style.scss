@@ -4,7 +4,7 @@
 }
 
 $color-background: beige;
-$color-light-on: #3498db;
+$color-light-on: #77db34;
 $color-button-border: #3498a1;
 html {
     font-family: "Roboto";
@@ -47,6 +47,9 @@ h5 {
     display: block;
     resize: none;
     font-size: 36px;
+    text-decoration: underline;
+    // color: red;
+    caret-color: #f0bbc2;
 }
 
 .control {
@@ -120,7 +123,7 @@ h5 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 300ms ease-in-out;
+    transition: all 150ms ease-in;
     &_pressed {
         border-color: $color-light-on;
         box-shadow: 0 0 40px 40px $color-light-on inset, 0 0 0 0 $color-light-on;

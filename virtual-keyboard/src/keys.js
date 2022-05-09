@@ -79,7 +79,6 @@ export const keysArray = {
 export const specialKeysActions = [
     "Backspace",
     "Delete",
-    "Enter",
     "ArrowLeft",
     "ArrowDown",
     "ArrowRight",

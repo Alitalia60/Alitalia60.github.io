@@ -55,6 +55,8 @@ h5 {
   display: block;
   resize: none;
   font-size: 36px;
+  text-decoration: underline;
+  caret-color: #f0bbc2;
 }
 
 .control {
@@ -169,13 +171,13 @@ h5 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-transition: all 300ms ease-in-out;
-  transition: all 300ms ease-in-out;
+  -webkit-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
 }
 .key_pressed {
-  border-color: #3498db;
-  -webkit-box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
-          box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  border-color: #77db34;
+  -webkit-box-shadow: 0 0 40px 40px #77db34 inset, 0 0 0 0 #77db34;
+          box-shadow: 0 0 40px 40px #77db34 inset, 0 0 0 0 #77db34;
 }
 .key:hover {
   border-color: #3498a1;
@@ -202,5 +204,5 @@ h5 {
 }
 
 .light-on {
-  background-color: #3498db;
+  background-color: #77db34;
 }

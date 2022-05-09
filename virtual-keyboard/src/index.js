@@ -46,6 +46,7 @@ for (const element of keysAll) {
 }
 
 const textArea = document.querySelector(".text_area");
+const caretPosition = { row: 0, offset: 0 };
 
 document.querySelector(".clear_button").addEventListener("click", () => {
     textArea.value = "";
@@ -67,7 +68,6 @@ function setSound() {
 }
 
 // !! ****************************  illuminateKey
-// function illuminateKey(pressedVirtKey, on = false) {
 function illuminateKey(pressedVirtKey, on = false) {
     if (on) {
         pressedVirtKey.classList.add("key_pressed");
@@ -82,17 +82,32 @@ function illuminateKey(pressedVirtKey, on = false) {
 }
 
 // !! ****************************  onPressDown
-// function onPressDown(virtKey, id) {
 function onPressDown(ev) {
-    const virtKey = ev.type == 'keydown' ? document.getElementById(ev.code) : ev.currentTarget;
-    const id = virtKey.id;
-    textArea.focus()
-        // ev.preventDefault()
-    if (fixedKeys.hasOwnProperty(id) && ev.type != 'keydown') {
+    let virtKey = null;
+    let id = '';
+    if (document.activeElement != textArea) {
+        textArea.focus()
+    }
+    if (ev.type != 'keydown') {
+        virtKey = ev.currentTarget;
+        id = virtKey.id;
+    } else {
+        virtKey = document.getElementById(ev.code);
+        virtKey.classList.add("key_pressed");
+        if (ev.code != 'Tab') {
+            return
+        } else {
+            id = 'Tab'
+                // ev.preventDefault();
+        };
+    };
+
+
+    if (fixedKeys.hasOwnProperty(id)) {
         fixedKeys[id] = !fixedKeys[id];
-        // document.getElementById(id).classList.toggle("key_pressed");
         virtKey.classList.toggle("key_pressed");
     } else {
+        console.log('109', id);
         illuminateKey(virtKey, lightOn);
         if (!specialKeysActions.includes(id) &&
             !(
@@ -103,23 +118,31 @@ function onPressDown(ev) {
                 fixedKeys.ControlRight
             )
         ) {
-            if (ev.type != 'keydown') {
-                textArea.value += getLetter(id);
-            }
+            //----------------------------------
+            //----------------------------------
+            textArea.setRangeText(getLetter(id), textArea.selectionEnd, textArea.selectionEnd, 'end');
+            textArea.selectionStart = textArea.selectionEnd;
+            textArea.focus();
+
+            // document.getSelection().collapseToEnd();
         }
     }
     playClick();
 }
 
 // !! ****************************  onPressUp
-// function onPressUp(virtKey, id) {
 function onPressUp(ev) {
-    const virtKey = ev.type == 'keyup' ? document.getElementById(ev.code) : ev.currentTarget;
-    const id = virtKey.id;
-
-    if (!fixedKeys.hasOwnProperty(id)) {
-        illuminateKey(virtKey, lightOff).then(handleKeys(virtKey));
+    if (ev.type == 'keyup') {
+        const virtKey = document.getElementById(ev.code);
+        virtKey.classList.remove("key_pressed");
+    } else {
+        const virtKey = ev.currentTarget;
+        const id = virtKey.id;
+        if (!fixedKeys.hasOwnProperty(id)) {
+            illuminateKey(virtKey, lightOff).then(handleKeys(virtKey));
+        }
     }
+
 }
 // !! ****************************  handleKeys
 function handleKeys(pressedVirtKey) {
@@ -130,14 +153,18 @@ function handleKeys(pressedVirtKey) {
         return;
     }
     if (specialKeysActions.includes(id)) {
-        // console.log(id);
         textArea.focus();
+        let lastPosition = textArea.value.length;
+        let pos = textArea.selectionStart;
+
         switch (id) {
             case "Delete":
+                textArea.selectionEnd = (pos == lastPosition) ? pos : pos + 1;
+                textArea.setRangeText('')
                 break;
             case "Backspace":
-                textArea.selectionStart = textArea.selectionEnd = textArea.textContent.length;
-                document.getSelection().deleteFromDocument()
+                textArea.selectionStart = (pos == 0) ? 0 : pos - 1;
+                textArea.setRangeText('')
                 break;
             case "Enter":
                 break;
@@ -146,10 +173,18 @@ function handleKeys(pressedVirtKey) {
             case "ArrowUp":
                 break;
             case "ArrowLeft":
+                textArea.selectionStart = (pos == 0) ? 0 : pos - 1;
+                document.getSelection().collapseToStart();
                 break;
             case "ArrowDown":
                 break;
             case "ArrowRight":
+                textArea.selectionEnd = (pos == lastPosition) ? pos : pos + 1;
+                document.getSelection().collapseToEnd();
+                break;
+            case "Enter":
+                // textArea.selectionEnd = (pos == lastPosition) ? pos : pos + 1;
+                document.getSelection().collapseToEnd();
                 break;
 
             default:
@@ -188,17 +223,19 @@ function switchLanguage(lang) {
                     arrKeysArr[1] = arrEl[1];
                 }
             });
-            //   keysArray[key][1] = element[1];
         });
     }
 }
 
 // !! ****************************  getLetter
 function getLetter(id) {
-    console.log('getLetter id=', id);
+
+    console.log('getLetter:  id=', id);
+
     let shift = fixedKeys.ShiftLeft || fixedKeys.ShiftRight;
     let alt = fixedKeys.AltLeft || fixedKeys.AltRight;
-
+    if (id == 'Tab') return '\t';
+    if (id == 'Enter') return '\n';
     for (let row in keysArray) {
         for (let j = 0; j < keysArray[row].length; j++) {
             let rowKeysArr = keysArray[row][j];

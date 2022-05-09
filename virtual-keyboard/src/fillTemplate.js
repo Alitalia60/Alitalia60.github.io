@@ -49,7 +49,7 @@ export function createHtmlDoc() {
     inputArea.classList.add('text_area');
     inputArea.id = 'example';
     inputArea.cols = "50";
-    inputArea.rows = "2";
+    inputArea.rows = "4";
     inputArea.autofocus = true;
     textWrapper.appendChild(inputArea);
 
