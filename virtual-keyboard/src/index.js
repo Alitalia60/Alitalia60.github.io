@@ -39,6 +39,9 @@ mute_button.addEventListener("click", () => {
     window.localStorage.setItem("sound", settings.sound);
 });
 
+const langIndicator = document.querySelector('.language_indicator');
+langIndicator.addEventListener('click', toggleLanguage);
+
 const keysAll = document.querySelectorAll(".key");
 for (const element of keysAll) {
     element.addEventListener("mousedown", onPressDown);
@@ -204,9 +207,15 @@ function resetKeys() {
     }
 }
 
+function toggleLanguage() {
+    settings.lang = settings.lang == "ru" ? "en" : "ru";
+    switchLanguage(settings.lang);
+
+}
+
 // !! ****************************  switchLanguage
-function switchLanguage(lang) {
-    if (lang) {} else {
+function switchLanguage(lang = '') {
+    if (!lang) {
         settings.lang = settings.lang == "ru" ? "en" : "ru";
     }
     window.localStorage.setItem("lang", settings.lang);

@@ -84,6 +84,15 @@ h5 {
   background-image: url(../assets/ico/mute.ico);
 }
 
+.language_indicator {
+  cursor: pointer;
+}
+.language_indicator:hover {
+  border: 2px solid #77db34;
+  border-radius: 10px;
+  background-color: #77db34;
+}
+
 .help_wrapper {
   width: 30%;
   display: -ms-grid;
