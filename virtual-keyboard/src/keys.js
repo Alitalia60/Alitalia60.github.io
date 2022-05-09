@@ -65,7 +65,7 @@ export const keysArray = {
     ],
     rowA: [
         ["ControlLeft", "Ctrl", 90],
-        ["Meta", "", 60],
+        ["Meta", "Win", 60],
         ["AltLeft", "Alt", 60],
         ["Space", " ", 470],
         ["AltRight", "Alt", 60],
