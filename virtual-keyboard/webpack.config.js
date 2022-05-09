@@ -28,13 +28,14 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                test: /\.(png|svg|ttf)$/i,
+                use: ["file-loader"],
                 type: 'asset/resource',
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource',
-            },
+                test: /\.wav$/,
+                loader: 'file-loader',
+            }
         ],
     },
 };

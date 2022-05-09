@@ -55,7 +55,7 @@ h5 {
   display: block;
   resize: none;
   font-size: 36px;
-  text-decoration: underline;
+  text-decoration: none;
   caret-color: #f0bbc2;
 }
 
@@ -70,22 +70,26 @@ h5 {
   transition: all 300ms ease-in-out;
 }
 .control:hover {
-  border-color: #3498a1;
+  border-color: #77db34;
+  border-width: 3px;
   background-color: #bbdbf0;
 }
 
 .mute_button {
-  background-image: url(../assets/ico/volume-up-4-16.ico);
-  background-size: contain;
-  background-position: center;
+  background-image: url(../assets/ico/29085816.jpg);
+  background-position: -1px -11px;
+  background-repeat: no-repeat;
+  background-size: 220%;
 }
 
 .mute {
-  background-image: url(../assets/ico/mute.ico);
+  background-position: -24px -11px;
 }
 
 .language_indicator {
   cursor: pointer;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 .language_indicator:hover {
   border: 2px solid #77db34;
@@ -215,3 +219,4 @@ h5 {
 .light-on {
   background-color: #77db34;
 }
+/*# sourceMappingURL=style.css.map */

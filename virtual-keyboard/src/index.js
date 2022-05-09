@@ -7,7 +7,8 @@ import {
     specialKeysActions,
 } from "./keys.js";
 
-import './css/style.css'
+import './css/style.css';
+import soundfile from './assets/sounds/click.wav';
 
 const settings = {
     lang: "en",
@@ -31,7 +32,7 @@ if (window.localStorage.getItem("mute") != undefined) {
     settings.sound = "off";
 }
 
-const audio = new Audio("./assets/sounds/click.wav");
+const audio = new Audio(soundfile);
 
 const mute_button = document.querySelector(".mute_button");
 
@@ -98,6 +99,8 @@ function onPressDown(ev) {
         id = virtKey.id;
     } else {
         virtKey = document.getElementById(ev.code);
+        console.log('101.', 'virtKey=', virtKey);
+
         virtKey.classList.add("key_pressed");
         if (ev.code != 'Tab') {
             return
@@ -110,7 +113,6 @@ function onPressDown(ev) {
         fixedKeys[id] = !fixedKeys[id];
         virtKey.classList.toggle("key_pressed");
     } else {
-        console.log('109', id);
         illuminateKey(virtKey, lightOn);
         if (!specialKeysActions.includes(id) &&
             !(
@@ -211,7 +213,6 @@ function moveToRow(direction) {
         offset: 0,
     };
     let caret = textArea.selectionStart;
-    console.log('***  ', 'caret=', caret);
     const rows = textArea.value.split('\n');
     for (let row = 0; row < rows.length; row++) {
         const element = rows[row];
@@ -230,7 +231,6 @@ function moveToRow(direction) {
         caretPosition.row = row - 1 < 0 ? row : row - 1;
     }
     caretPosition.offset = offset > rows[caretPosition.row].length ? rows[caretPosition.row].length : offset;
-    console.log(caretPosition);
 
     offset = 0;
     for (row = 0; row < caretPosition.row; row++) {
@@ -282,8 +282,6 @@ function switchLanguage(lang = '') {
 
 // !! ****************************  getLetter
 function getLetter(id) {
-
-    console.log('getLetter:  id=', id);
 
     let shift = fixedKeys.ShiftLeft || fixedKeys.ShiftRight;
     let alt = fixedKeys.AltLeft || fixedKeys.AltRight;

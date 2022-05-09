@@ -47,8 +47,7 @@ h5 {
     display: block;
     resize: none;
     font-size: 36px;
-    text-decoration: underline;
-    // color: red;
+    text-decoration: none;
     caret-color: #f0bbc2;
 }
 
@@ -61,23 +60,29 @@ h5 {
     border-radius: 10px;
     @include transition-options;
     &:hover {
-        border-color: $color-button-border;
+        border-color: $color-light-on;
+        border-width: 3px;
         background-color: #bbdbf0;
     }
 }
 
 .mute_button {
-    background-image: url(../assets/ico/volume-up-4-16.ico);
-    background-size: contain;
-    background-position: center;
+    // background-image: url(../assets/ico/20857588.png);
+    background-image: url(../assets/ico/29085816.jpg);
+    background-position: -1px -11px;
+    // background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: 220%;
 }
 
 .mute {
-    background-image: url(../assets/ico/mute.ico);
+    // background-image: url(../assets/ico/mute.ico);
+    background-position: -24px -11px;
 }
 
 .language_indicator {
     cursor: pointer;
+    @include transition-options;
     &:hover {
         border: 2px solid #77db34;
         border-radius: 10px;
