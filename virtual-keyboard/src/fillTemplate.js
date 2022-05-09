@@ -21,8 +21,6 @@ class KeyButton {
         btnBody.classList.add("key");
         btnBody.id = id;
         btnBody.style.width = width + "px";
-        // btnBody.style.flexGrow = width;
-        // btnBody.style.height = this.height;
         let upLetter = document.createElement("h6");
         upLetter.classList.add("up__sign");
         upLetter.textContent = uprSymb;
@@ -62,10 +60,7 @@ export function createHtmlDoc() {
     const muteButton = document.createElement('button');
     muteButton.classList.add('mute_button');
     muteButton.classList.add('control');
-    // muteButton.classList.add('control');
     textWrapper.append(muteButton);
-
-
 
     const helpWrapper = document.createElement('div');
     helpWrapper.classList.add('help_wrapper');
@@ -78,10 +73,8 @@ export function createHtmlDoc() {
     helpWrapper.children[1].textContent = 'Change language';
     helpWrapper.children[2].textContent = 'Win + Space';
     helpWrapper.children[3].classList.add('language_indicator');
-    // helpWrapper.children[3].textContent = settings.lang.toUpperCase();
 
     const keyBoardLayer = document.createElement("div");
-    // document.body.prepend(keyBoardLayer);
     wrapper.append(keyBoardLayer);
     keyBoardLayer.classList.add("keys__container");
 
@@ -92,7 +85,6 @@ export function createHtmlDoc() {
         keyBoardLayer.appendChild(row);
     }
 
-    //create virtual buttons
     for (let key in keysArray) {
         const row = document.getElementById(key);
         keysArray[key].forEach((element) => {

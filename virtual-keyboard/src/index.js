@@ -101,10 +101,8 @@ function onPressDown(ev) {
             return
         } else {
             id = 'Tab'
-                // ev.preventDefault();
         };
     };
-
 
     if (fixedKeys.hasOwnProperty(id)) {
         fixedKeys[id] = !fixedKeys[id];
@@ -121,13 +119,9 @@ function onPressDown(ev) {
                 fixedKeys.ControlRight
             )
         ) {
-            //----------------------------------
-            //----------------------------------
             textArea.setRangeText(getLetter(id), textArea.selectionEnd, textArea.selectionEnd, 'end');
             textArea.selectionStart = textArea.selectionEnd;
             textArea.focus();
-
-            // document.getSelection().collapseToEnd();
         }
     }
     playClick();
@@ -145,8 +139,8 @@ function onPressUp(ev) {
             illuminateKey(virtKey, lightOff).then(handleKeys(virtKey));
         }
     }
-
 }
+
 // !! ****************************  handleKeys
 function handleKeys(pressedVirtKey) {
     let id = pressedVirtKey.id;
@@ -174,12 +168,22 @@ function handleKeys(pressedVirtKey) {
             case "Tab":
                 break;
             case "ArrowUp":
+                //!!TODO ******************
+                textArea.selectionStart = moveToRow('prev');
+                document.getSelection().collapseToStart();
+                textArea.setRangeText('')
+
                 break;
             case "ArrowLeft":
                 textArea.selectionStart = (pos == 0) ? 0 : pos - 1;
                 document.getSelection().collapseToStart();
                 break;
             case "ArrowDown":
+                //!!TODO ******************
+                textArea.selectionStart = moveToRow('next');
+                document.getSelection().collapseToStart();
+                textArea.setRangeText('')
+
                 break;
             case "ArrowRight":
                 textArea.selectionEnd = (pos == lastPosition) ? pos : pos + 1;
@@ -196,6 +200,44 @@ function handleKeys(pressedVirtKey) {
     }
     resetKeys();
 }
+
+// !! ****************************  resetKeys
+function moveToRow(direction) {
+    textArea.focus();
+    const caretPosition = {
+        row: 0,
+        offset: 0,
+    };
+    let caret = textArea.selectionStart;
+    console.log('***  ', 'caret=', caret);
+    const rows = textArea.value.split('\n');
+    for (let row = 0; row < rows.length; row++) {
+        const element = rows[row];
+    }
+
+    let offset = caret;
+    let row = 0;
+    while (offset > rows[row].length) {
+        offset -= rows[row].length;
+        offset--;
+        row++;
+    };
+    if (direction === 'next') {
+        caretPosition.row = row + 1 >= rows.length ? row : row + 1;
+    } else if (direction === 'prev') {
+        caretPosition.row = row - 1 < 0 ? row : row - 1;
+    }
+    caretPosition.offset = offset > rows[caretPosition.row].length ? rows[caretPosition.row].length : offset;
+    console.log(caretPosition);
+
+    offset = 0;
+    for (row = 0; row < caretPosition.row; row++) {
+        offset += rows[row].length;
+        offset++;
+    };
+    return offset + caretPosition.offset;
+}
+
 
 // !! ****************************  resetKeys
 function resetKeys() {
