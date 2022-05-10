@@ -29,7 +29,7 @@ export const keysArray = {
     ['KeyP', 'P', 60],
     ['BracketLeft', '{', 60],
     ['BracketRight', '}', 60],
-    ['Backslash', '|', 60],
+    ['Backslash_d', '|', 60],
     ['Delete', 'Del', 60],
   ],
   rowC: [
@@ -49,7 +49,7 @@ export const keysArray = {
   ],
   rowB: [
     ['ShiftLeft', 'Shift', 130],
-    ['Backslash', '\\', 60],
+    ['Backslash_c', '\\', 60],
     ['KeyZ', 'Z', 60],
     ['KeyX', 'X', 60],
     ['KeyC', 'C', 60],
@@ -116,7 +116,7 @@ export const keysArrayEN = {
     ['KeyP', 'P'],
     ['BracketLeft', '{'],
     ['BracketRight', '}'],
-    ['Backslash', '|'],
+    ['Backslash_d', '|'],
   ],
   rowC: [
     ['KeyA', 'A'],
@@ -162,7 +162,7 @@ export const keysArrayRU = {
     ['KeyP', 'З'],
     ['BracketLeft', 'Х'],
     ['BracketRight', 'Ъ'],
-    ['Backslash', '/'],
+    ['Backslash_d', '/'],
   ],
   rowC: [
     ['KeyA', 'Ф'],
