@@ -63,6 +63,12 @@ export default function createHtmlDoc() {
   helpWrapper.children[2].textContent = 'Win + Space';
   helpWrapper.children[3].classList.add('language_indicator');
 
+  const linkToSource = document.createElement('a');
+  linkToSource.href = 'https://github.com/Alitalia60/Alitalia60.github.io/tree/gh-pages/virtual-keyboard/src';
+  linkToSource.text = 'Source code';
+  linkToSource.classList.add('link_to_source');
+  helpWrapper.appendChild(linkToSource);
+
   const keyBoardLayer = document.createElement('div');
   wrapper.append(keyBoardLayer);
   keyBoardLayer.classList.add('keys__container');
