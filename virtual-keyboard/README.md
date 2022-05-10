@@ -1,12 +1,10 @@
 # virtual-kyeboard
 
-do follow commands
-
 # npm i
 
-then 
+then run webpack in development mode
 
-# nmp run dev
+# npm run dev
 
 source files:  ./src
 built files: ./dist 
